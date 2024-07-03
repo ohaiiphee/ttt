@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
         marginBottom: 80,
         alignItems: 'center', 
         justifyContent: 'center', 
-        width: '87%', // Adjust width to ensure it's contained within the parent
-        maxHeight: '80%', // Optional: Adjust max height to ensure it contains the buttons without overflow
+        width: '87%', // check if it stays inside the screen
+        maxHeight: '80%', // contain buttons without overflow
     },
     title: {
         color: 'white',
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
-    minWidth: '60%', // Ensures buttons have a minimum width but can grow if needed
+    minWidth: '60%', // buttons have min width but can grow if bigger screen
     minHeight: 40, // Minimum height for touch targets
     },
     backButton: {

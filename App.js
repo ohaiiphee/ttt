@@ -6,6 +6,7 @@ import DifficultySelection from './src/DifficultySelection';
 import { Audio } from 'expo-av';
 import backgroundImage from './src/assets/red_background.png';
 
+// get width and height to use in styles
 const { width, height } = Dimensions.get('window');
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
   const [losingSound, setLosingSound] = useState();
   const [tieSound, setTieSound] = useState();
 
+  // load sounds
   useEffect(() => {
     async function loadSounds() {
       const { sound: winningSound } = await Audio.Sound.createAsync(require('./src/assets/winningSound.mp3'));
@@ -43,17 +45,20 @@ export default function App() {
     };
   }, []);
 
+  // TODO explain
   function handlePlay(nextSquares) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   }
 
+  // TODO explain
   function jumpToMove(moveIndex) {
     setHistory(history.slice(0, moveIndex + 1));
     setCurrentMove(moveIndex);
   }
 
+  // TODO explain
   function handleModeSelect(selectedMode) {
     setMode(selectedMode);
     setHistory([Array(9).fill(null)]);
@@ -67,6 +72,7 @@ export default function App() {
     setDifficulty(selectedDifficulty);
   }
 
+  // remove mode and difficulty when going back to mode selection
   function handleBackToModeSelection() {
     setMode(null);
     setDifficulty(null);
@@ -74,13 +80,17 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      {/* Background for the entire app */}
       <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.image}>
         {mode === null ? (
+          // Show mode selection if mode is not selected
           <ModeSelection onSelectMode={handleModeSelect} />
         ) : mode === 'PvE' && difficulty === null ? (
+          // Show difficulty selection if PvE is chosen
           <DifficultySelection onSelectDifficulty={handleDifficultySelect} onBack={handleBackToModeSelection} />
         ) : (
           <>
+            {/* Container for upper buttons */}
             <View style={styles.buttonsContainer}>
               <Pressable style={styles.backButton} onPress={handleBackToModeSelection}>
                 <Image source={require('./src/assets/tictactoe_pirateLogo.jpeg')} style={{ width: 70, height: 70 }} />
@@ -92,17 +102,19 @@ export default function App() {
                 <Text style={styles.buttonText}>Start Over</Text>
               </Pressable>
             </View>
+            {/* Container for board*/}
             <View style={styles.board}>
-            <Board
-              mode={mode === 'PvE' ? difficulty : mode}
-              xIsNext={xIsNext}
-              squares={currentSquares}
-              onPlay={handlePlay}
-              winningSound={winningSound}
-              losingSound={losingSound}
-              tieSound={tieSound}
-            />
+              <Board
+                mode={mode === 'PvE' ? difficulty : mode}
+                xIsNext={xIsNext}
+                squares={currentSquares}
+                onPlay={handlePlay}
+                winningSound={winningSound}
+                losingSound={losingSound}
+                tieSound={tieSound}
+              />
             </View>
+            {/* Container for moves history */}
             <View style={styles.moveHistory}>
               {history.map((move, index) => (
                 <Pressable style={styles.historyMoves} key={index} onPress={() => jumpToMove(index)}>
@@ -126,8 +138,8 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    height:"150%",
-    width:"auto"
+    height: "150%",
+    width: "auto"
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -169,8 +181,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   board: {
-      width: width - 20, // 20 pixels less than screen width for padding
-      height: height / 2, // Half of screen height, adjust as needed
-      alignSelf: 'center',
+    width: width - 20, // 20 pixels less than screen width for padding
+    height: height / 2, // Half of screen height - check if needs adjusting
+    alignSelf: 'center',
   }
 });
