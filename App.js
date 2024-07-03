@@ -45,22 +45,28 @@ export default function App() {
     };
   }, []);
 
-  // TODO explain
+  // update current history and current move when a new move is made
   function handlePlay(nextSquares) {
+    // create new history array with the next move
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    // update history with new array of moves
     setHistory(nextHistory);
+    // set current move to the latest move
     setCurrentMove(nextHistory.length - 1);
   }
 
-  // TODO explain
+  // jump back to a specific move
   function jumpToMove(moveIndex) {
+    //only include moves up to the selected move
     setHistory(history.slice(0, moveIndex + 1));
+    // update game state, current move is the selected move
     setCurrentMove(moveIndex);
   }
 
-  // TODO explain
+  // choose game mode
   function handleModeSelect(selectedMode) {
     setMode(selectedMode);
+    // reset game history and current move to 0 every time a new mode is selected
     setHistory([Array(9).fill(null)]);
     setCurrentMove(0);
     if (selectedMode === 'PvP') {
