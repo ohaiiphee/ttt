@@ -103,4 +103,5 @@ const styles = StyleSheet.create({
     },
 });
 
+// export component to use in other files
 export default DifficultySelection;

@@ -13,10 +13,10 @@ const ModalComponent = ({ isVisible, message, onClose }) => (
                 <Text style={styles.modalText}>{message}</Text>
                 <Pressable style={styles.closeButton} onPress={onClose}>
                     <Text style={styles.modalButtonText}>Close</Text>
-                    </Pressable>
-                </View>
+                </Pressable>
             </View>
-        </Modal>
+        </View>
+    </Modal>
 );
 
 const styles = StyleSheet.create({
