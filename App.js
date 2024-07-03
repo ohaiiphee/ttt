@@ -49,12 +49,6 @@ export default function App() {
     setCurrentMove(nextHistory.length - 1);
   }
 
-  function redoLastMove() {
-    if (currentMove > 0) {
-      setCurrentMove(currentMove - 1);
-    }
-  }
-
   function jumpToMove(moveIndex) {
     setHistory(history.slice(0, moveIndex + 1));
     setCurrentMove(moveIndex);
@@ -79,7 +73,6 @@ export default function App() {
   }
 
   return (
-    
     <View style={styles.container}>
       <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.image}>
         {mode === null ? (
@@ -135,7 +128,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height:"150%",
     width:"auto"
-   
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -155,7 +147,6 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderRadius: 10,
     backgroundColor: '#0549a5',
-    
   },
   historyMoves: {
     textAlign: 'center',
