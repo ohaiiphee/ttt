@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, Pressable, Image } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import CalculateWinner from './CalculateWinner';
 import Square from './Square';
 import ModalComponent from './ModalComponent';
 
-// get width and height to use in styles
-const { width, height } = Dimensions.get('window');
+
 
 const Board = ({ mode, xIsNext, squares, onPlay, winningSound, losingSound, tieSound }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
