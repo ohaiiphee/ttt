@@ -140,11 +140,13 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingTop: 50,
+    paddingBottom: -40,
     padding: 10,
     zIndex: 1, // Ensure buttons are above the board
   },
   moveHistory: {
-    marginTop: 10,
+    marginTop: -20,
     width: '85%', // Adjust width based on window width
     padding: 10,
     alignSelf: 'center',
