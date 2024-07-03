@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Pressable, Image, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Image, ImageBackground, Dimensions } from 'react-native';
 import Board from './src/Board';
 import ModeSelection from './src/ModeSelection';
 import DifficultySelection from './src/DifficultySelection';
 import { Audio } from 'expo-av';
 import backgroundImage from './src/assets/red_background.png';
+
+const { width, height } = Dimensions.get('window');
 
 export default function App() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -174,6 +176,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   board: {
-    marginBottom: 50,
+      width: width - 20, // 20 pixels less than screen width for padding
+      height: height / 2, // Half of screen height, adjust as needed
+      alignSelf: 'center',
   }
 });
