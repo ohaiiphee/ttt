@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
         flexShrink: 1,
         justifyContent: 'center',
         alignItems: 'center',
-       
     },
     logo: {
         width: width * 0.8, // 80% of screen width
